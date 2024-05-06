@@ -192,6 +192,13 @@ namespace Paint
             }
         }
 
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            g.Clear(Color.White);
+            pic.Image = bmp;
+            index = 0;
+        }
+
         private void btnEraser_Click(object sender, EventArgs e)
         {
             index = 2;
