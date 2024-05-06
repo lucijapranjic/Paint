@@ -23,6 +23,10 @@ namespace Paint
         ColorDialog colorDialog = new ColorDialog();
         Color newColor;
         Image OpenedFile;
+        private Point selectionStartPoint;
+        private Point selectionEndPoint;
+        private bool selecting = false;
+
 
         public Form1()
         {
@@ -110,7 +114,9 @@ namespace Paint
 
             startX = e.X;
             startY = e.Y;
-
+            selecting = true;
+            selectionStartPoint = e.Location;
+            selectionEndPoint = e.Location;
         }
         int index;
 
@@ -148,6 +154,11 @@ namespace Paint
             }
 
             pic.Refresh();
+            if (selecting)
+            {
+                selectionEndPoint = e.Location;
+                pic.Refresh();
+            }
         }
 
         private void btnPencil_Click(object sender, EventArgs e)
@@ -199,6 +210,59 @@ namespace Paint
             index = 0;
         }
 
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            if (pic.SelectionRectangle.IsEmpty)
+                MessageBox.Show("No selection made");
+            else
+            {
+                Bitmap selectedBitmap = new Bitmap(pic.SelectionRectangle.Width, pic.SelectionRectangle.Height);
+                using (Graphics g = Graphics.FromImage(selectedBitmap))
+                {
+                    Rectangle sourceRect = new Rectangle(pic.SelectionRectangle.Location, pic.SelectionRectangle.Size);
+                    Rectangle destRect = new Rectangle(0, 0, sourceRect.Width, sourceRect.Height);
+                    g.DrawImage(bmp, destRect, sourceRect, GraphicsUnit.Pixel);
+                }
+                Clipboard.SetImage(selectedBitmap);
+                MessageBox.Show("Image copied to clipboard");
+            }
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            IDataObject data = Clipboard.GetDataObject();
+            if (data.GetDataPresent(DataFormats.Bitmap))
+            {
+                Bitmap pastedBitmap = (Bitmap)data.GetData(DataFormats.Bitmap);
+                g.DrawImage(pastedBitmap, pic.PointToClient(Cursor.Position));
+                pic.Refresh();
+            }
+            else
+                MessageBox.Show("No image found in clipboard");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.jpg; *.jpeg; *.png; *.bmp)|*.jpg; *.jpeg; *.png; *.bmp|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+                try
+                {
+                    Image image = Image.FromFile(filePath);
+                    pic.Image = image;
+                    bmp = new Bitmap(image); 
+                    g = Graphics.FromImage(bmp);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading image: " + ex.Message);
+                }
+            }
+        }
+
         private void btnEraser_Click(object sender, EventArgs e)
         {
             index = 2;
@@ -228,6 +292,7 @@ namespace Paint
             }
 
             pic.Refresh();
+            selecting = false;
         }
 
         private void Validate(Bitmap bitmap, Stack<Point> stack, int x, int y, Color oldColor, Color newColor)

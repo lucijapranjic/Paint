@@ -47,6 +47,9 @@
             this.Save = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colorPicker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
@@ -56,6 +59,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnLine);
             this.panel1.Controls.Add(this.btnRectangle);
             this.panel1.Controls.Add(this.pic_color);
@@ -80,7 +84,7 @@
             this.btnLine.ForeColor = System.Drawing.Color.Black;
             this.btnLine.Image = global::Paint.Properties.Resources.line;
             this.btnLine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLine.Location = new System.Drawing.Point(713, 39);
+            this.btnLine.Location = new System.Drawing.Point(622, 48);
             this.btnLine.Name = "btnLine";
             this.btnLine.Size = new System.Drawing.Size(68, 52);
             this.btnLine.TabIndex = 13;
@@ -97,7 +101,7 @@
             this.btnRectangle.ForeColor = System.Drawing.Color.Black;
             this.btnRectangle.Image = global::Paint.Properties.Resources.rectangle;
             this.btnRectangle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRectangle.Location = new System.Drawing.Point(639, 39);
+            this.btnRectangle.Location = new System.Drawing.Point(557, 48);
             this.btnRectangle.Name = "btnRectangle";
             this.btnRectangle.Size = new System.Drawing.Size(68, 52);
             this.btnRectangle.TabIndex = 12;
@@ -109,7 +113,7 @@
             // pic_color
             // 
             this.pic_color.BackColor = System.Drawing.Color.White;
-            this.pic_color.Location = new System.Drawing.Point(234, 29);
+            this.pic_color.Location = new System.Drawing.Point(212, 39);
             this.pic_color.Name = "pic_color";
             this.pic_color.Size = new System.Drawing.Size(75, 71);
             this.pic_color.TabIndex = 11;
@@ -134,7 +138,7 @@
             this.btnColor.ForeColor = System.Drawing.Color.Black;
             this.btnColor.Image = global::Paint.Properties.Resources.color;
             this.btnColor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnColor.Location = new System.Drawing.Point(329, 39);
+            this.btnColor.Location = new System.Drawing.Point(293, 48);
             this.btnColor.Name = "btnColor";
             this.btnColor.Size = new System.Drawing.Size(56, 52);
             this.btnColor.TabIndex = 9;
@@ -151,7 +155,7 @@
             this.btnFill.ForeColor = System.Drawing.Color.Black;
             this.btnFill.Image = global::Paint.Properties.Resources.bucket;
             this.btnFill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFill.Location = new System.Drawing.Point(391, 39);
+            this.btnFill.Location = new System.Drawing.Point(345, 48);
             this.btnFill.Name = "btnFill";
             this.btnFill.Size = new System.Drawing.Size(56, 52);
             this.btnFill.TabIndex = 8;
@@ -168,7 +172,7 @@
             this.btnPencil.ForeColor = System.Drawing.Color.Black;
             this.btnPencil.Image = global::Paint.Properties.Resources.pencil;
             this.btnPencil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPencil.Location = new System.Drawing.Point(453, 39);
+            this.btnPencil.Location = new System.Drawing.Point(398, 48);
             this.btnPencil.Name = "btnPencil";
             this.btnPencil.Size = new System.Drawing.Size(56, 52);
             this.btnPencil.TabIndex = 7;
@@ -185,7 +189,7 @@
             this.btnEraser.ForeColor = System.Drawing.Color.Black;
             this.btnEraser.Image = global::Paint.Properties.Resources.eraser;
             this.btnEraser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEraser.Location = new System.Drawing.Point(515, 39);
+            this.btnEraser.Location = new System.Drawing.Point(451, 48);
             this.btnEraser.Name = "btnEraser";
             this.btnEraser.Size = new System.Drawing.Size(56, 52);
             this.btnEraser.TabIndex = 6;
@@ -202,7 +206,7 @@
             this.btnEllipse.ForeColor = System.Drawing.Color.Black;
             this.btnEllipse.Image = global::Paint.Properties.Resources.circle;
             this.btnEllipse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEllipse.Location = new System.Drawing.Point(577, 39);
+            this.btnEllipse.Location = new System.Drawing.Point(504, 48);
             this.btnEllipse.Name = "btnEllipse";
             this.btnEllipse.Size = new System.Drawing.Size(56, 52);
             this.btnEllipse.TabIndex = 5;
@@ -255,7 +259,9 @@
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Save,
             this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "File";
@@ -280,6 +286,31 @@
             this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem3.Text = "Clear";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Text = "Copy";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem5.Text = "Paste";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(687, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 52);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Add Image";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -324,6 +355,9 @@
         private System.Windows.Forms.ToolStripMenuItem Save;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.Button button1;
     }
 }
 
