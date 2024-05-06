@@ -22,6 +22,7 @@ namespace Paint
         int startX, startY, shapeWidth, shapeHeight;
         ColorDialog colorDialog = new ColorDialog();
         Color newColor;
+        Image OpenedFile;
 
         public Form1()
         {
@@ -104,10 +105,6 @@ namespace Paint
 
         private void pic_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                EraseLine(e.Location);
-            }
             isDrawing = true;
             startPoint = e.Location;
 
@@ -128,14 +125,7 @@ namespace Paint
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Image(*.jpg)|*.jpg|(*.*|*.*";
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                Bitmap newBMP = bmp.Clone(new Rectangle(0, 0, pic.Width, pic.Height), bmp.PixelFormat);
-                newBMP.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
-                MessageBox.Show("Image saved sucessfully");
-            }
+           
         }
 
         private void pic_MouseMove(object sender, MouseEventArgs e)
@@ -179,6 +169,28 @@ namespace Paint
             index = 7;
         }
 
+        private void Save_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Image(*.jpg)|*.jpg|(*.*|*.*";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap newBMP = bmp.Clone(new Rectangle(0, 0, pic.Width, pic.Height), bmp.PixelFormat);
+                newBMP.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+                MessageBox.Show("Image saved sucessfully");
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Op = new OpenFileDialog();
+            DialogResult dr = Op.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                OpenedFile = Image.FromFile(Op.FileName);
+                pic.Image = OpenedFile;
+            }
+        }
 
         private void btnEraser_Click(object sender, EventArgs e)
         {
